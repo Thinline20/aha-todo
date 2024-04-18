@@ -1,0 +1,31 @@
+---
+import Navbar from "~/components/Navbar.astro";
+import "~/styles/root.css";
+
+type Props = {
+  title?: string;
+};
+
+const { title = "AHA Todo" } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body
+    x-data="{theme:$persist(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')}"
+    x-bind:class="{'dark':theme==='dark'}"
+    x-cloak
+    class="antialiased"
+  >
+    <Navbar />
+    <slot />
+  </body>
+  <script is:inline src="./node_modules/preline/preline.js"></script>
+  <script src="~/scripts/alpine.ts"></script>
+</html>

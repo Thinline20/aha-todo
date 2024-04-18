@@ -1,0 +1,46 @@
+---
+import Sun from "./icons/lucide/Sun.astro";
+import Moon from "./icons/lucide/Moon.astro";
+import Computer from "./icons/lucide/Computer.astro";
+---
+
+<header>
+  <nav class="flex w-full justify-between border-b p-4 md:px-6">
+    <div>
+      <a href="/">
+        <span class="text-2xl font-bold tracking-wide md:text-3xl">TODO</span>
+      </a>
+    </div>
+
+    <div>
+      <!-- Theme Toggle -->
+      <div class="hs-dropdown">
+        <button
+          class="hs-dropdown-toggle ring-offset-background focus-visible:ring-ring hover:bg-accent hover:text-accent-foreground inline-flex h-10 w-10 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+        >
+          <Sun class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-transform dark:rotate-90 dark:scale-0" />
+          <Moon
+            class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-transform dark:rotate-0 dark:scale-100"
+          />
+          <span class="sr-only">Toggle Theme</span>
+        </button>
+        <div
+          class="hs-dropdown-menu hs-dropdown-open:opacity-100 bg-background hs-dropdown-open:flex z-10 mb-2 mt-2 hidden w-36 origin-bottom-right flex-col space-y-1 rounded-lg border p-2 opacity-0 shadow-md transition-[margin,opacity] duration-300"
+        >
+          <button class="hover:bg-muted flex items-center gap-2 rounded-md px-2 py-1" x-on:click="theme='light'">
+            <Sun class="block h-[1.2rem] w-[1.2rem]" /><span>Light</span>
+          </button>
+          <button class="hover:bg-muted flex items-center gap-2 rounded-md px-2 py-1" x-on:click="theme='dark'">
+            <Moon class="block h-[1.2rem] w-[1.2rem]" /><span>Dark</span>
+          </button>
+          <button
+            class="hover:bg-muted flex items-center gap-2 rounded-md px-2 py-1"
+            x-on:click="theme=window.matchMedia('(prefers-color-scheme: dark)')?'dark':'light'"
+          >
+            <Computer class="block h-[1.2rem] w-[1.2rem]" /><span>System</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
